@@ -3,8 +3,8 @@
     --color-dark: #121212;         /* Dominan Hitam/Gelap */
     --color-light-bg: #1e1e1e;     /* Background Sedikit Lebih Terang */
     --color-text-light: #f0f0f0;   /* Teks utama (putih pucat) */
-    --color-primary: #00bcd4;      /* Warna Aksen (Biru Cyan/Terang) */
-    --color-secondary: #ff9800;    /* Warna Sekunder (Oranye) */
+    --color-primary: #d4dbdc;      /* Warna Aksen (Biru Cyan/Terang) */
+    --color-secondary: #c1a430;    /* Warna Sekunder (Oranye) */
 }
 
 * {
