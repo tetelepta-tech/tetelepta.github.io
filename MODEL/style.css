@@ -1,0 +1,164 @@
+/* GLOBAL STYLES */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0d0d1a; /* Sangat gelap, mendekati Black Hole */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.main-header {
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    border-bottom: 3px solid #3c40c6;
+    text-align: center;
+}
+
+.content-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.module-box {
+    background-color: #1a1a2e; /* Kontainer lebih gelap */
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    flex: 1; /* Agar kedua kotak memiliki lebar yang sama */
+    min-width: 300px;
+}
+
+/* --- CHATBOT LOGIKA STYLES --- */
+.chatbot-container {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbot-header {
+    background-color: #2c2c54;
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+}
+
+.chatbot-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a2e;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.user-message {
+    background-color: #3c40c6;
+    color: #ffffff;
+    align-self: flex-end;
+}
+
+.bot-message {
+    background-color: #4a4a6e;
+    color: #e0e0e0;
+    align-self: flex-start;
+}
+
+.chatbot-footer {
+    display: flex;
+    padding-top: 10px;
+    border-top: 1px solid #2c2c54;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    margin-right: 10px;
+    background-color: #0d0d1a;
+    color: #ffffff;
+    outline: none;
+}
+
+#send-button {
+    background-color: #3c40c6;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+#send-button:hover {
+    background-color: #5c62ec;
+}
+
+/* --- WEBCAM MODULE STYLES --- */
+.webcam-module {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 500px; /* Samakan tingginya dengan Chatbot */
+}
+
+#webcam-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#webcam {
+    border-radius: 4px;
+    border: 3px solid #e74c3c; /* Border merah untuk visual AI */
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+#prediction {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #2ecc71; /* Warna hijau neon untuk hasil */
+    padding: 10px;
+    background-color: #0d0d1a;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#start-webcam {
+    background-color: #2ecc71; /* Hijau untuk tombol mulai */
+    color: #0d0d1a;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+#start-webcam:hover {
+    background-color: #34c759;
+}
