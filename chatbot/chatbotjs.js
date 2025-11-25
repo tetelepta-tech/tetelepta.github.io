@@ -1,7 +1,7 @@
 ﻿// ============================================
 // KONFIGURASI AI (GEMINI API)
 // ============================================
-const API_KEY = "AIzaSyBfbwDqWq3UGV77uSMQab4dbEhi3hYOF78"; 
+const API_KEY = "ISI_DENGAN_API_KEY"; 
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 // Instruksi agar AI punya kepribadian (Persona)
