@@ -8,15 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
-    <header class="main-header">
-        <h1>🌌 Galactic AI Hub: Chat & Vision 📸</h1>
-    </header>
+    <div class="main-header">🌌 Galactic AI Hub: Chat & Vision 📸</div>
 
     <div class="content-container">
         
-        <div class="chatbot-container module-box">
+        <div class="chatbot-container">
             <div class="chatbot-header">
-                💬 Logic Bot (Tanya Saya!)
+                💬 Logic Bot Team 1 (Tanya Saya!)
             </div>
             <div class="chatbot-body" id="chat-box">
                 <div class="message bot-message">
@@ -29,27 +27,24 @@
             </div>
         </div>
         
-        <div class="webcam-module module-box">
-            <h2>👁️ AI Vision: Klasifikasi Gambar</h2>
+        <div class="module-box webcam-module">
+            <div class="chatbot-header">👁️ AI Vision: Klasifikasi Gambar</div>
             <div id="webcam-container">
-                <video id="webcam" width="240" height="240" autoplay muted></video>
-                <div id="prediction">Model sedang dimuat...</div>
+                <canvas id="canvas"></canvas>
             </div>
-            <button id="start-webcam" onclick="init()">
-                Mulai Webcam & Model
-            </button>
+            <div id="label-container"></div> 
+            <button type="button" onclick="init()">Mulai AI</button>
         </div>
 
     </div>
 
-    <script src="js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+
+    <script src="chatbotjs.js"></script>
+
+    <script src="ai.js"></script>
     
-    <div>Teachable Machine Pose Model</div>
-<button type="button" onclick="init()">Start</button>
-<div><canvas id="canvas"></canvas></div>
-<div id="label-container"></div>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
 <script type="text/javascript">
     // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
