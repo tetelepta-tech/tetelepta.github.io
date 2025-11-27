@@ -1,8 +1,8 @@
 ﻿// ============================================
 // KONFIGURASI AI (GEMINI API)
 // ============================================
-const API_KEY = "AIzaSyCOsrHRgBVaJzM427N-f3_9CKYrrWs4fa4"; 
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+const API_KEY = "AIzaSyDai5PhNUH65TR_oYftQnlKGAEOvi_9tlM"; 
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 // Instruksi agar AI punya kepribadian (Persona)
 const SYSTEM_INSTRUCTION = `
@@ -24,38 +24,59 @@ const sendButton = document.getElementById('send-button');
 // ============================================
 
 /**
- * Fungsi untuk meminta jawaban ke Google Gemini
+ * Fungsi: Mengirim pesan ke server Google Gemini (VERSI SAFE MODE)
  */
 async function fetchGeminiResponse(userMessage) {
+    // 1. Cek Ketersediaan API Key di Awal
+    if (!API_KEY || API_KEY.length < 30 || API_KEY.includes("PASTE")) {
+        console.error("API Key bermasalah:", API_KEY);
+        return "⚠️ ERROR FATAL: API Key belum diisi atau formatnya salah di file chatbot.js!";
+    }
+
+    // 2. Gabungkan Text (Cara Paling Aman)
+    const finalPrompt = SYSTEM_INSTRUCTION + "\n\nUser bertanya: " + userMessage;
+
     try {
+        console.log("Sedang mengirim request ke Gemini..."); // Log untuk cek jalan/tidak
+
         const response = await fetch(API_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json" 
+            },
             body: JSON.stringify({
-                contents: [
-                    {
-                        role: "user",
-                        parts: [
-                            { text: SYSTEM_INSTRUCTION }, 
-                            { text: userMessage }         
-                        ]
-                    }
-                ]
+                contents: [{
+                    parts: [{ text: finalPrompt }]
+                }]
             })
         });
 
+        // 3. JIKA ERROR, TANGKAP PENYEBABNYA
+        if (!response.ok) {
+            const errorBody = await response.text(); // Kita baca pesan error asli dari Google
+            console.error("DETAIL ERROR GOOGLE:", errorBody);
+
+            // Cek jenis error umum
+            if (errorBody.includes("API_KEY_INVALID")) {
+                return "⛔ API KEY SALAH/MATI. Silakan buat key baru di aistudio.google.com";
+            } else if (errorBody.includes("INVALID_ARGUMENT")) {
+                return "⛔ FORMAT DATA SALAH. Cek console untuk detail.";
+            } else {
+                return "⚠️ Error dari Google: " + response.status + ". Cek Console (F12) untuk detailnya.";
+            }
+        }
+
+        // 4. JIKA SUKSES
         const data = await response.json();
-        
-        // Ambil teks jawaban dari respon JSON
         if (data.candidates && data.candidates.length > 0) {
             return data.candidates[0].content.parts[0].text;
         } else {
-            return "Maaf, saya sedang bingung. Bisa ulangi pertanyaanmu?";
+            return "Maaf, bot tidak dapat menyusun kata-kata (Respon kosong).";
         }
 
     } catch (error) {
-        console.error("Error API:", error);
-        return "⚠️ Terjadi kesalahan koneksi ke otak AI saya. Cek API Key atau internetmu.";
+        console.error("KONEKSI GAGAL:", error);
+        return "⚠️ Gagal terhubung ke internet atau API diblokir browser.";
     }
 }
 
